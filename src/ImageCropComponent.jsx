@@ -96,7 +96,6 @@ const ImageCropComponent = ({ crop }) => {
               />
             </CropContainer>
             <div className="controls">
-              {/* Zoom Slider */}
               <label>Zoom: {parseFloat(zoom).toFixed(2)}</label>
               <input
                 type="range"
