@@ -14,13 +14,11 @@ const ImageCropComponent = ({ crop }) => {
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
   const [croppedImageUrl, setCroppedImageUrl] = useState(null);
   const [showCropModal, setShowCropModal] = useState(false);
-  const [zoom, setZoom] = useState(1); 
+  const [zoom, setZoom] = useState(1);
 
-  
   const onCropComplete = useCallback((_, croppedAreaPixels) => {
     setCroppedAreaPixels(croppedAreaPixels);
   }, []);
-
 
   const getCroppedImg = useCallback(async () => {
     if (!croppedAreaPixels || !imageSrc) return null;
@@ -50,7 +48,6 @@ const ImageCropComponent = ({ crop }) => {
           croppedAreaPixels.height
         );
 
-        
         canvas.toBlob((blob) => {
           const croppedImageUrl = URL.createObjectURL(blob);
           resolve(croppedImageUrl);
@@ -59,14 +56,22 @@ const ImageCropComponent = ({ crop }) => {
     });
   }, [croppedAreaPixels, imageSrc]);
 
-  
   const onCropImage = async () => {
     const croppedImage = await getCroppedImg();
     setCroppedImageUrl(croppedImage);
     setShowCropModal(false);
+
+    
+    if (croppedImage) {
+      const link = document.createElement('a');
+      link.href = croppedImage; 
+      link.download = 'cropped-image.png'; 
+      document.body.appendChild(link);
+      link.click(); 
+      document.body.removeChild(link); 
+    }
   };
 
-  
   const handleFileUpload = (event) => {
     const file = event.target.files[0];
     const reader = new FileReader();
@@ -88,11 +93,11 @@ const ImageCropComponent = ({ crop }) => {
               <Cropper
                 image={imageSrc}
                 crop={{ x: 0, y: 0 }}
-                zoom={zoom} 
+                zoom={zoom}
                 aspect={crop.width / crop.height}
                 onCropChange={() => {}}
                 onCropComplete={onCropComplete}
-                onZoomChange={setZoom} 
+                onZoomChange={setZoom}
               />
             </CropContainer>
             <div className="controls">
@@ -103,7 +108,7 @@ const ImageCropComponent = ({ crop }) => {
                 max="3"
                 step="0.1"
                 value={zoom}
-                onChange={(e) => setZoom(parseFloat(e.target.value))} 
+                onChange={(e) => setZoom(parseFloat(e.target.value))}
                 className="zoom-slider"
               />
             </div>
