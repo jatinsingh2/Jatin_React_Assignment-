@@ -1,0 +1,89 @@
+.dnd-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  
+  .button-controls {
+    display: flex;
+    flex-direction: column; 
+    margin-bottom: 20px; 
+  }
+  
+  .control-button {
+    background-color: #5a67d8;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px 0; 
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    width: 200px; 
+  }
+  
+  .control-button:hover {
+    background-color: #434190;
+  }
+  
+  .draggable-buttons-container {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    margin-top: 20px;
+    width: 100%; 
+  }
+  
+  
+  .draggable-button {
+    background-color: #48bb78;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    margin: 10px 0; 
+    font-size: 14px;
+    cursor: grab;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    width: 200px; 
+  }
+  
+  .draggable-button:hover {
+    background-color: #38a169;
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .draggable-button:active {
+    cursor: grabbing;
+    background-color: #2f855a;
+    box-shadow: none;
+  }
+  
+  
+  .draggable-button {
+    border: 1px solid #e2e8f0;
+  }
+  
+  .draggable-button:hover {
+    border-color: #a0aec0;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .draggable-buttons-container {
+      align-items: center;
+    }
+  
+    .draggable-button {
+      width: 100%; 
+      max-width: 200px; 
+    }
+  
+    .control-button {
+      width: 100%; 
+    }
+  }
+  
