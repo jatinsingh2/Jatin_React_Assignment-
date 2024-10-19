@@ -60,16 +60,6 @@ const ImageCropComponent = ({ crop }) => {
     const croppedImage = await getCroppedImg();
     setCroppedImageUrl(croppedImage);
     setShowCropModal(false);
-
-    
-    if (croppedImage) {
-      const link = document.createElement('a');
-      link.href = croppedImage; 
-      link.download = 'cropped-image.png'; 
-      document.body.appendChild(link);
-      link.click(); 
-      document.body.removeChild(link); 
-    }
   };
 
   const handleFileUpload = (event) => {
@@ -120,6 +110,14 @@ const ImageCropComponent = ({ crop }) => {
         <div>
           <h3>Cropped Image:</h3>
           <img src={croppedImageUrl} alt="Cropped" />
+          <button className="download-button" onClick={() => {
+            const link = document.createElement('a');
+            link.href = croppedImageUrl;
+            link.download = 'cropped-image.png';
+            link.click();
+          }}>
+            Download Cropped Image
+          </button>
         </div>
       )}
     </div>
